@@ -1,0 +1,45 @@
+.post {
+    width: 385px;
+    margin: 0px 25px 40px 25px;
+}
+
+.postImg {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    border-radius: 8px;
+    ;
+}
+
+.postInfo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.postCard {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 600;
+}
+
+.postTitle {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 400;
+}
+
+.postDate {
+    font-size: 13px;
+    color: #999;
+}
+
+.postDesc {
+    margin-top: 15px;
+    color: #666;
+    line-height: 20px;
+    /* show more */
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+
+}
