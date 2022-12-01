@@ -41,4 +41,4 @@ router.post('/login', async (req, res) => {
 	}
 });
 
-module.exports = router; //to index file, it can be set new name(authRouter? or postRouter)
+module.exports = router; //SEND to index file, it can be set new name(authRouter? or postRouter)
