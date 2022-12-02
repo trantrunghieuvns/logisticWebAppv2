@@ -64,7 +64,6 @@ router.get('/:id', async (req, res) => {
 	try {
 		const user = await User.findById(req.params.id);
 		const { password, ...others } = user._doc; //SOMETIMES CHECKING REQ W POSTMAN, REQ HAS MANY FIELDS, ONLY _DOC HAS GUD SOUP, SOMETIMES NOT
-		console.log(user);
 		res.status(200).json(others);
 	} catch (err) {
 		res.status(500).json(err);

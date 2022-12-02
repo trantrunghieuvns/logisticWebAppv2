@@ -1,8 +1,13 @@
 import './topbar.css';
 import { Link } from 'react-router-dom';
+import { useContext } from 'react';
+import { Context } from '../../context/Context';
 
 function TopBar() {
-	const user = true;
+	const { user, dispatch } = useContext(Context);
+	const handeLogOut = () => {
+		dispatch({ type: 'LOG_OUT' });
+	};
 	return (
 		<div className='top'>
 			<div className='topLeft'>
@@ -28,7 +33,10 @@ function TopBar() {
 
 					<li className='topListItem'>
 						{user && (
-							<Link className='link' to='/login'>
+							<Link
+								className='link'
+								to='/registerforadminonlynoonecanhavethiscode'
+								onClick={handeLogOut}>
 								LOGOUT
 							</Link>
 						)}
@@ -41,19 +49,26 @@ function TopBar() {
 				{user ? (
 					<img
 						className='topImg'
-						src='https://corlettexpress.com/wp-content/uploads/2020/03/AdobeStock_246515233-1574x787.jpeg'
+						src={
+							user.profilePic ||
+							'https://tadatruck.vn/wp-content/uploads/2020/11/driver-and-business-man-2.jpg'
+						}
 						alt='fasdeli'
 					/>
 				) : (
 					<>
 						<ul className='topList'>
 							<li className='topListItem'>
-								<Link className='link' to='/login'>
+								<Link
+									className='link'
+									to='/loginforadminonlynoonecanhavethiscode'>
 									LOGIN
 								</Link>
 							</li>
 							<li className='topListItem'>
-								<Link className='link' to='/register'>
+								<Link
+									className='link'
+									to='/registerforadminonlynoonecanhavethiscode'>
 									REGISTER
 								</Link>
 							</li>

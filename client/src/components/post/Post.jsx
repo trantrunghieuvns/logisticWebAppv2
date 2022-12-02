@@ -1,32 +1,28 @@
 import React from 'react';
 import './post.css';
+import { Link } from 'react-router-dom';
 
-export default function Post() {
+export default function Post({ post }) {
+	const PF = 'http://localhost:5000/images/';
+
 	return (
 		<>
 			<div className='post'>
-				<img
-					className='postImg'
-					src='https://cms.eichertrucksandbuses.com/uploads/truck/sub-category/eebb54d3bcab6acc4341073ed083d87d.png'
-					alt='truck'
-				/>
+				{post.photo && <img className='postImg' src={PF + post.photo} alt='' />}
+
 				<div className='postInfo'>
-					<div className='postCards'>
-						<div className='postCard'>Flight Service</div>
-					</div>
-					<span className='postTitle'>
-						Lorem ipsum dolor sit amet consectetur
+					<Link className='link' to={`/post/${post._id}`}>
+						<span className='postTitle'>{post.title}</span>
+						<hr />
+					</Link>
+					<span className='postDate'>
+						{new Date(post.createdAt).toDateString()}
 					</span>
-					<hr />
-					<span className='postDate'>1 hour ago</span>
-					<div className='postDesc'>
-						Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit
-						nostrum dolorum eaque dolor unde error architecto excepturi quisquam
-						aspernatur iste. Exercitationem nesciunt cum iure. Ducimus sapiente
-						quod doloribus harum officia!
-					</div>
+					<div className='postDesc'>{post.desc}</div>
 					<br />
-					<button className='postInfoBtn'>Read Post</button>
+					<Link className='link' to={`/post/${post._id}`}>
+						<button className='postInfoBtn'>Read Post</button>
+					</Link>
 				</div>
 			</div>
 		</>

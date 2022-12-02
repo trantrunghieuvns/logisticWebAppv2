@@ -7,22 +7,35 @@ import Login from './pages/login/Login';
 import Register from './pages/register/Register';
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { useContext } from 'react';
+import { Context } from './context/Context';
 
 function App() {
-	const user = true;
+	const { user } = useContext(Context);
 	return (
 		<BrowserRouter>
 			<TopBar />
 			<Routes>
-				<Route element={<Home />} path='/' />
-				<Route element={<Single />} path='/post/:postId' />
-				<Route element={user ? <Write /> : <Login />} path={'/write'} />
 				<Route
-					element={user ? <Settings /> : <Register />}
-					path={'/settings'}
+					path={'/registerforadminonlynoonecanhavethiscode'}
+					element={user ? <Home /> : <Register />}
 				/>
-				<Route element={user ? <Home /> : <Register />} path={'/register'} />
-				<Route element={user ? <Home /> : <Login />} path={'/login'} />
+				{/* // */}
+				<Route
+					path={'/loginforadminonlynoonecanhavethiscode'}
+					element={user ? <Home /> : <Login />}
+				/>
+				{/* // */}
+				<Route path='/' element={<Home />} />
+				{/* // */}
+				<Route path='/post/:postId' element={<Single />} />
+				{/* // */}
+				<Route path={'/write'} element={user ? <Write /> : <Login />} />
+				{/* // */}
+				<Route
+					path={'/settings'}
+					element={user ? <Settings /> : <Register />}
+				/>
 			</Routes>
 		</BrowserRouter>
 	);

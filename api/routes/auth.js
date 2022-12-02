@@ -3,7 +3,7 @@ const User = require('../models/User');
 const bcrypt = require('bcrypt');
 
 //REGISTER
-router.post('/register', async (req, res) => {
+router.post('/registerforadminonlynoonecanhavethiscode', async (req, res) => {
 	try {
 		//USING BCRYPT TO INCREASE SECURITY LEVEL OF PASSWORD
 		const salt = await bcrypt.genSalt(10);
@@ -15,29 +15,28 @@ router.post('/register', async (req, res) => {
 			password: hashedPass,
 		});
 		const user = await newUser.save();
-		res.status(200).json(user);
+		return res.status(200).json(user);
 	} catch (err) {
-		// TALK ABOUT ERROR HANDLING LATER
-		res.status(500).json(err);
+		return res.status(500).json(err);
 	}
 });
 
 //LOGIN
-router.post('/login', async (req, res) => {
+router.post('/loginforadminonlynoonecanhavethiscode', async (req, res) => {
 	try {
 		const user = await User.findOne({ username: req.body.username });
-		!user && res.status(400).json('Wrong Username / Password');
 
-		//COMPARE (BCRYPT-PASSCODE VS MONGODB-PASSCODE/BCRYPTED) => VALIDATING
-		const validated = await bcrypt.compare(req.body.password, user.password);
-		!validated && res.status(400).json('Wrong Username / Password');
-
-		// const { password, ...others } = user; NOT REALLY NECESSARY / ONLY WHEN PASSWORD OR SOME FIELD DISAPPEARED
-
-		console.log(user);
-		res.status(200).json(user); // UP TO SERVER WITH STATUS OK 200 WITH USER OBJECT
-	} catch (error) {
-		res.status(500).json(err);
+		if (user === null) {
+			return res.status(400).json('RETURN NOTHING!');
+		} else {
+			if (req.body.password === user.password) {
+				return res.status(200).json(user);
+			} else {
+				return res.status(400).json('Wrong credentials!');
+			}
+		}
+	} catch (err) {
+		return res.status(500).json(err);
 	}
 });
 
