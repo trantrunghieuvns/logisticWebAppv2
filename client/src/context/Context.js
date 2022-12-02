@@ -19,6 +19,7 @@ export const ContextProvider = ({ children }) => {
 	return (
 		<Context.Provider
 			value={{
+				INITIAL_STATE,
 				user: state.user,
 				isFetching: state.isFetching,
 				error: state.error,

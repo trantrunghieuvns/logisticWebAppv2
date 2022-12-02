@@ -26,7 +26,6 @@ function Write() {
 			data.append('file', file);
 			//add img to newPost
 			newPost.photo = filename;
-			console.log(newPost);
 			try {
 				await axios.post('/upload', data);
 			} catch (error) {}

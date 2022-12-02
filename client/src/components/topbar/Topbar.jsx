@@ -4,6 +4,7 @@ import { useContext } from 'react';
 import { Context } from '../../context/Context';
 
 function TopBar() {
+	const admin = 'hieu';
 	const { user, dispatch } = useContext(Context);
 	const handeLogOut = () => {
 		dispatch({ type: 'LOG_OUT' });
@@ -46,17 +47,17 @@ function TopBar() {
 			<div className='topRight'>
 				<i className='topSearchIcon fa-solid fa-magnifying-glass'></i>
 
-				{user ? (
-					<img
-						className='topImg'
-						src={
-							user.profilePic ||
-							'https://tadatruck.vn/wp-content/uploads/2020/11/driver-and-business-man-2.jpg'
-						}
-						alt='fasdeli'
-					/>
-				) : (
+				{user === admin && (
 					<>
+						<img
+							className='topImg'
+							src={
+								user.profilePic ||
+								'https://tadatruck.vn/wp-content/uploads/2020/11/driver-and-business-man-2.jpg'
+							}
+							alt='fasdeli'
+						/>
+
 						<ul className='topList'>
 							<li className='topListItem'>
 								<Link

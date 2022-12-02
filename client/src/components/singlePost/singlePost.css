@@ -26,25 +26,31 @@
 }
 
 .singlePostEdit {
+    position: absolute;
+    align-items: center;
+    width: 40px;
+    right: 3rem;
     font-size: 1.25rem;
     float: right;
-    padding-left: 2rem;
+
 
 }
 
 .singlePostIcon {
-    padding: .375rem;
+    float: right;
+    align-items: center;
+    display: flex;
+    padding: .575rem;
+
+
 }
 
-.singlePostIcon:first-child:hover {
+.singlePostIcon:hover {
     color: rgb(108, 108, 108);
     cursor: pointer;
 }
 
-.singlePostIcon:last-child:hover {
-    color: rgb(108, 108, 108);
-    cursor: pointer;
-}
+
 
 .singlePostInfo {
     margin-bottom: 1rem;
